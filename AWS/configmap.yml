@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: configmap
+data:
+  restaurantdb_url: jdbc:mysql://mysql-db.c3ws8skqks89.eu-west-2.rds.amazonaws.com:3306/restaurantdb
+  foodcataloguedb_url: jdbc:mysql://mysql-db.c3ws8skqks89.eu-west-2.rds.amazonaws.com:3306/foodcataloguedb
+  userdb_url: jdbc:mysql://mysql-db.c3ws8skqks89.eu-west-2.rds.amazonaws.com:3306/userdb
+  orderdb_url: mongodb+srv://admin:<PASSWORD>@atlas-cluster.axklmne.mongodb.net/?appName=Atlas-Cluster?retryWrites=true&w=majority
+  eureka_service_address: http://eureka-0.eureka-service:8761/eureka
