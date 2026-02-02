@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment # Kubernetes resource kind we are creating
+metadata:
+  name: orderapp
+  labels:
+    app: orderapp
+spec:
+  replicas: 1 # Number of replicas that will be created for this deployment
+  selector:
+    matchLabels:
+      app: orderapp
+  template:
+    metadata:
+      labels:
+        app: orderapp
+    spec:
+      containers:
+        - name: orderapp
+          image: ousamalasri/food-catalogue-service:0.0.1
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 9094 #
+
+          env: # Environment variables supplied to the Pod
+            - name: JAVA_TOOL_OPTIONS 
+              valueFrom: "-Djdk.tls.client.protocols=TLSv1.2" # Solve TLS issue SSLHandshakeException
+            - name: SPRING_DATA_MONGODB_URI
+              valueFrom:
+                configMapKeyRef:
+                  key: mysql-password
+            - name: SPRING_DATA_MONGODB_DATABASE
+              valueFrom:
+                configMapKeyRef:
+                  key: "orderdb"
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: order-service
+spec:
+  ports:
+    - protocol: TCP
+      port: 9092
+      targetPort: 9092
+  selector:
+    app: orderapp
