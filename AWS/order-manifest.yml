@@ -23,14 +23,16 @@ spec:
 
           env: # Environment variables supplied to the Pod
             - name: JAVA_TOOL_OPTIONS 
-              valueFrom: "-Djdk.tls.client.protocols=TLSv1.2" # Solve TLS issue SSLHandshakeException
+              value: "-Djdk.tls.client.protocols=TLSv1.2" # Solve TLS issue SSLHandshakeException
             - name: SPRING_DATA_MONGODB_URI
               valueFrom:
                 configMapKeyRef:
-                  key: mysql-password
+                  name: configmap
+                  key: orderdb_url
             - name: SPRING_DATA_MONGODB_DATABASE
               valueFrom:
                 configMapKeyRef:
+                  name: configmap
                   key: "orderdb"
 
 ---
