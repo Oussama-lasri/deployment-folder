@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: foodcatalogueapp
-          image: ousamalasri/food-catalogue-service:0.0.1
+          image: ousamalasri/food-catalogue-service:latest
           imagePullPolicy: Always
           ports:
             - containerPort: 9098 #

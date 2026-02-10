@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: orderapp
-          image: ousamalasri/food-catalogue-service:0.0.1
+          image: ousamalasri/order-service:latest
           imagePullPolicy: Always
           ports:
             - containerPort: 9094 #
@@ -30,10 +30,7 @@ spec:
                   name: configmap
                   key: orderdb_url
             - name: SPRING_DATA_MONGODB_DATABASE
-              valueFrom:
-                configMapKeyRef:
-                  name: configmap
-                  key: "orderdb"
+              value: "orderdb"
 
 ---
 

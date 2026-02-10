@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: eureka
-          image: ousamalasri/eureka-server:0.0.1
+          image: ousamalasri/eureka-server:latest
           imagePullPolicy: Always
           ports:
             - containerPort: 8761
